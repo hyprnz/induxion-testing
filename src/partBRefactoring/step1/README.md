@@ -2,18 +2,18 @@
 
 Your customers could greatly benefit from enhancing the capabilities of the legacy calculator.
 
-Currently the calculator processes a collection of dates to calculate a planned start date.
+Currently, the calculator processes a collection of dates to calculate a planned start date.
 
 There is a new market segment which needs a different algorithm to calculate the planned start date.
 
 Our goal is to refactor the existing code to a point where it is clearer where the new algorithm can be introduced.
 
-## Step one 
+## Step 1
 
-We spend 60-70% of our time as developers reading code, why is this code hard to read and understand?
+* We spend 60-70% of our time as developers reading code, why is this code hard to read and understand?
 
-Look at the code and identify code smells. How could you refactor to make the code easier to read and understand?
+* Look at the code and identify code smells. How could you refactor to make the code easier to read and understand?
 
-Why is the legacy calculator doing too much?
+* Why is the legacy calculator doing too much?
 
-What are some of the concerns that could be split out?
+* What are some concerns that could be split out?
