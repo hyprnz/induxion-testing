@@ -1,8 +1,7 @@
-import {expect} from "chai";
 import {LegacyCalculator} from "./LegacyCalculator";
-import * as TypeMoq from "typemoq";
-import {Moqs} from "../Moqs";
 import {PlannedStartMaker} from "./PlannedStartMaker";
+import {assertThat} from "mismatched";
+import {Thespian, TMocked} from "thespian";
 
 describe("LegacyCalculator mock example", () => {
     describe("calculate", () => {
@@ -10,14 +9,14 @@ describe("LegacyCalculator mock example", () => {
         const date2 = new Date(2018, 0, 10);
         const date3 = new Date(2018, 0, 11);
         const dates = [date3, date1, date2];
-        let mock: Moqs;
-        let plannedStartMaker: TypeMoq.IMock<PlannedStartMaker>;
+        let thespian = new Thespian();
+        let plannedStartMaker: TMocked<PlannedStartMaker>;
         let legacyCalculator: LegacyCalculator;
 
         beforeEach(() => {
-            mock = new Moqs();
-            plannedStartMaker = mock.ofType(PlannedStartMaker);
-            legacyCalculator = new LegacyCalculator((dates, minimumCount) => plannedStartMaker.object)
+            thespian = new Thespian();
+            plannedStartMaker = thespian.mock<PlannedStartMaker>("plannedStartMaker");
+            legacyCalculator = new LegacyCalculator(() => plannedStartMaker.object)
         });
 
         it("make", () => {
@@ -25,28 +24,9 @@ describe("LegacyCalculator mock example", () => {
                 .setup(x => x.make())
                 .returns(() => ({startTime: 100, count: 200}));
 
-            expect(legacyCalculator.calculate(dates)).to.eql({startTime: 100, count: 200});
+            assertThat(legacyCalculator.calculate(dates)).is({startTime: 100, count: 200});
 
-            mock.verifyAll();
-        });
-    });
-});
-
-
-describe("LegacyCalculator fake example (to be completed)", () => {
-    describe("calculate", () => {
-        const date1 = new Date(2018, 0, 1);
-        const date2 = new Date(2018, 0, 10);
-        const date3 = new Date(2018, 0, 11);
-        const dates = [date3, date1, date2];
-
-
-        beforeEach(() => {
-
-        });
-
-        it("make", () => {
-
+            thespian.verify();
         });
     });
 });

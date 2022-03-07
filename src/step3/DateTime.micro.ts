@@ -1,5 +1,5 @@
-import {expect} from "chai";
 import {oneWeek, withinOneWeekExcludingStart} from "./DateTime";
+import {assertThat} from "mismatched";
 
 describe("DateTime", () => {
     const minDate = new Date(2018,3,20);
@@ -11,31 +11,31 @@ describe("DateTime", () => {
         it("one week later", () => {
             const date1 = new Date(2018, 1, 1, 13, 1, 1, 1);
             const date2 = new Date(date1.getTime() + oneWeek);
-            expect(date1.toUTCString()).to.eql("Thu, 01 Feb 2018 00:01:01 GMT");
-            expect(date2.toUTCString()).to.eql("Thu, 08 Feb 2018 00:01:01 GMT");
+            assertThat(date1.toUTCString()).is("Thu, 01 Feb 2018 00:01:01 GMT");
+            assertThat(date2.toUTCString()).is("Thu, 08 Feb 2018 00:01:01 GMT");
         });
     });
 
     describe("withinOneWeekFromStart", () => {
         it("no dates", () => {
-            expect(withinOneWeekExcludingStart([], minDate.getTime())).to.eql([]);
+            assertThat(withinOneWeekExcludingStart([], minDate.getTime())).is([]);
         });
         it("same date", () => {
-            expect(withinOneWeekExcludingStart([minDate], minDate.getTime())).to.eql([]);
+            assertThat(withinOneWeekExcludingStart([minDate], minDate.getTime())).is([]);
         });
         it("just after now", () => {
-            expect(withinOneWeekExcludingStart([justAfterMinDate], minDate.getTime())).to.eql([justAfterMinDate]);
+            assertThat(withinOneWeekExcludingStart([justAfterMinDate], minDate.getTime())).is([justAfterMinDate]);
         });
         it("exactly one week later", () => {
-            expect(withinOneWeekExcludingStart([exactlyOneWeekAfterMinDate], minDate.getTime())).to.eql([]);
+            assertThat(withinOneWeekExcludingStart([exactlyOneWeekAfterMinDate], minDate.getTime())).is([]);
         });
         it("more than one week later", () => {
-            expect(withinOneWeekExcludingStart([moreThanOneWeekAfterMinDate], minDate.getTime())).to.eql([]);
+            assertThat(withinOneWeekExcludingStart([moreThanOneWeekAfterMinDate], minDate.getTime())).is([]);
         });
         it("with many dates", () => {
-            expect(withinOneWeekExcludingStart([
+            assertThat(withinOneWeekExcludingStart([
                 minDate, justAfterMinDate, moreThanOneWeekAfterMinDate, exactlyOneWeekAfterMinDate, justAfterMinDate
-            ], minDate.getTime())).to.eql([justAfterMinDate, justAfterMinDate]);
+            ], minDate.getTime())).is([justAfterMinDate, justAfterMinDate]);
         });
     });
 });
