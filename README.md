@@ -1,6 +1,11 @@
-# Layered Testing Workshop
+# Layered Testing Exercises
 
-This workshop requires [node.js](https://nodejs.org/en/download/). You should have at least version 10.14.2. Later versions are fine, too.
+These exercises require [node.js](https://nodejs.org/en/download/). You should have at least version 10.14.2. Later versions are fine, too.
+
+See [Downloading and installing Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for more details... 
+you'll also need [git](https://github.com/git-guides/install-git)!
+
+[Here is a video](https://drive.google.com/file/d/1W8T8F4msTpaj1C74xJsnsqGveI-xBdNk/view?usp=sharing) if you need more guidance.
 
 To confirm that you have the correct minimum versions installed, use these commands in a terminal, e.g. PowerShell or Bash:
 

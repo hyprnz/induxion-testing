@@ -2,6 +2,8 @@
 
 ## Step 3
 
+The code for Step 3 includes the "advanced step" from Step 2.
+
 We have introduced DateTime.ts to encapsulate pure date functions. 
 
 We have also now introduced the PlannedStartMaker class which encapsulates the making of a `PlannedStart` object based on

@@ -3,7 +3,7 @@ import {isACat} from "./Cat";
 
 describe("Cat - Example tests", () => {
 
-    describe("isACat", () => {
+    describe("isACat()", () => {
         const catFamily = "Felidae"
         const catPawsCount = 4;
         it("fails when the family is wrong", () => {
